@@ -5,7 +5,7 @@ namespace Booni3\Linnworks\Api;
 class Orders extends ApiClient
 {
 
-    public function getOpenOrders($fulfilmentCenter, int $entriesPerPage = 25, int $pageNumber = 1, string $filters = "", array $sorting = [], string $additionalFilters = "")
+    public function getOpenOrders($fulfilmentCenter, int $entriesPerPage = 25, int $pageNumber = 1, array $filters = [], array $sorting = [], string $additionalFilters = "")
     {
         return $this->get('Orders/GetOpenOrders', [
             "entriesPerPage" => $entriesPerPage,
@@ -17,7 +17,7 @@ class Orders extends ApiClient
         ]);
     }
 
-    public function getAllOpenOrders($fulfilmentCenter, string $filters = "", array $sorting = [], string $additionalFilter = "")
+    public function getAllOpenOrders($fulfilmentCenter, array $filters = [], array $sorting = [], string $additionalFilter = "")
     {
         return $this->get('Orders/GetAllOpenOrders', [
             "filters" => $filters,
