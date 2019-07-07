@@ -14,7 +14,7 @@ class Stock extends ApiClient
         ]);
     }
 
-    public function getStockItems(string $keyWord = "",string $locationId = "",int $entriesPerPage = 100, int $pageNumber = 1, bool $excludeComposites = true, bool $excludeVariations = true, bool $excludeBatches = true)
+    public function getStockItems(string $keyWord = "", string $locationId = "", int $entriesPerPage = 100, int $pageNumber = 1, bool $excludeComposites = true, bool $excludeVariations = true, bool $excludeBatches = true)
     {
         return $this->get('Stock/GetStockItems', [
             "keyWord" => $keyWord,
