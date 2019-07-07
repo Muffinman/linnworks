@@ -7,11 +7,11 @@ class Orders extends ApiClient
 
     public function getOpenOrders($fulfilmentCenter, int $entriesPerPage = 25, int $pageNumber = 1, array $filters = [], array $sorting = [], string $additionalFilters = "")
     {
-        return $this->get('Orders/GetOpenOrders', [
+        return $this->post('Orders/GetOpenOrders', [
             "entriesPerPage" => $entriesPerPage,
             "pageNumber" => $pageNumber,
-            "filters" => $filters,
-            "sorting" => $sorting,
+            "filters" => json_encode($filters),
+            "sorting" => json_encode($sorting),
             "fulfilmentCenter" => $fulfilmentCenter,
             "additionalFilters" => $additionalFilters
         ]);
@@ -19,9 +19,9 @@ class Orders extends ApiClient
 
     public function getAllOpenOrders($fulfilmentCenter, array $filters = [], array $sorting = [], string $additionalFilter = "")
     {
-        return $this->get('Orders/GetAllOpenOrders', [
-            "filters" => $filters,
-            "sorting" => $sorting,
+        return $this->post('Orders/GetAllOpenOrders', [
+            "filters" => json_encode($filters),
+            "sorting" => json_encode($sorting),
             "fulfilmentCenter" => $fulfilmentCenter,
             "additionalFilter" => $additionalFilter
         ]);
@@ -29,21 +29,21 @@ class Orders extends ApiClient
 
     public function GetOrdersById(array $pkOrderIds = [])
     {
-        return $this->get('Orders/GetOrdersById', [
+        return $this->post('Orders/GetOrdersById', [
             "pkOrderIds" => json_encode($pkOrderIds)
         ]);
     }
 
     public function GetOrdersByNumOrderId(int $numOrderId = 1)
     {
-        return $this->get('Orders/GetOrderDetailsByNumOrderId', [
+        return $this->post('Orders/GetOrderDetailsByNumOrderId', [
             "OrderId" => $numOrderId
         ]);
     }
 
     public function SearchProcessedOrdersPaged(int $pageNum = 1, int $numEntriesPerPage = 50, string $from = "-7200 days", string $to = "now", string $dateType = "PROCESSED", string $searchField = "", string $exactMatch = "false", string $searchTerm = "")
     {
-        return $this->get('ProcessedOrders/SearchProcessedOrdersPaged', [
+        return $this->post('ProcessedOrders/SearchProcessedOrdersPaged', [
             "from" => date('Y-m-d\TH:i:sP', strtotime($from)),
             "to" => date('Y-m-d\TH:i:sP', strtotime($to)),
             "dateType" => $dateType,
@@ -57,7 +57,7 @@ class Orders extends ApiClient
 
     public function MoveToLocation(array $orderIds = [], string $pkStockLocationId = "")
     {
-        return $this->get('Orders/MoveToLocation', [
+        return $this->post('Orders/MoveToLocation', [
             "orderIds" => json_encode($orderIds),
             "pkStockLocationId" => $pkStockLocationId
         ]);
@@ -65,7 +65,7 @@ class Orders extends ApiClient
 
     public function ChangeShippingMethod(array $orderIds = [], string $shippingMethod = "")
     {
-        return $this->get('Orders/ChangeShippingMethod', [
+        return $this->post('Orders/ChangeShippingMethod', [
             "orderIds" => json_encode($orderIds),
             "shippingMethod" => $shippingMethod
         ]);

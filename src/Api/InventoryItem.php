@@ -15,7 +15,7 @@ class InventoryItem extends ApiClient {
      */
     public function getInventoryItemById(string $inventoryItemId)
     {
-        return $this->get('Inventory/GetInventoryItemById', [
+        return $this->post('Inventory/GetInventoryItemById', [
             'id' => $inventoryItemId,
         ]);
     }
@@ -27,7 +27,7 @@ class InventoryItem extends ApiClient {
      */
     public function getInventoryItemImages(string $inventoryItemId)
     {
-        return $this->get('Inventory/GetInventoryItemImages', [
+        return $this->post('Inventory/GetInventoryItemImages', [
             'inventoryItemId' => $inventoryItemId,
         ]);
     }
@@ -39,7 +39,7 @@ class InventoryItem extends ApiClient {
      */
     public function getInventoryItemDescriptions(string $inventoryItemId)
     {
-        return $this->get('Inventory/GetInventoryItemDescriptions', [
+        return $this->post('Inventory/GetInventoryItemDescriptions', [
             'id' => $inventoryItemId,
         ]);
     }
@@ -52,9 +52,9 @@ class InventoryItem extends ApiClient {
      */
     public function getInventoryItemExtendedProperties(string $inventoryItemId, array $propertyParams)
     {
-        return $this->get('Inventory/GetInventoryItemExtendedProperties', [
+        return $this->post('Inventory/GetInventoryItemExtendedProperties', [
             'inventoryItemId' => $inventoryItemId,
-            'propertyParams' => $propertyParams,
+            'propertyParams' => json_encode($propertyParams),
         ]);
     }
 }
