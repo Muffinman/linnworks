@@ -4,6 +4,7 @@ namespace Booni3\Linnworks;
 
 use Booni3\Linnworks\Api\ApiClient;
 use Booni3\Linnworks\Api\Auth;
+use Booni3\Linnworks\Api\InventoryItem;
 use Booni3\Linnworks\Api\Locations;
 use Booni3\Linnworks\Api\Orders;
 use Booni3\Linnworks\Api\PostalServices;
@@ -58,6 +59,11 @@ class Linnworks
     public function orders() : Orders
     {
         return new Orders($this->applicationId, $this->applicationSecret, $this->token, $this->bearer, $this->server);
+    }
+
+    public function inventoryItem() : InventoryItem
+    {
+        return new InventoryItem($this->applicationId, $this->applicationSecret, $this->token, $this->bearer, $this->server);
     }
 
     public function locations() : Locations
