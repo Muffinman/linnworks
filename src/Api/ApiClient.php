@@ -104,7 +104,7 @@ class ApiClient
     {
         $throttle = false;
         try{
-            $array = json_decode($e->getResponse()->getBody()->getContents());
+            $array = json_decode($e->getResponse()->getBody()->getContents(), true);
             if(isset($array[0]['status'])){
                 if($array[0]['status'] == '429') $throttle = true;
             }
